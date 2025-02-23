@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>My test page</title>
+    <title>Fundraise Up &amp; GA Integration</title>
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -46,81 +46,30 @@
       })(window, document, "script", "FundraiseUp", "AEMZUDUM");
     </script>
     <!-- End Fundraise Up -->
-    <!-- Google Analytics tag -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-FHDZFTN6VL"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-FHDZFTN6VL");
-    </script>
-
-    <!-- Fundraise Up Widget -->
-    <script>
-      (function (w, d, s, n, a) {
-        if (!w[n]) {
-          var l = "call,catch,on,once,set,then,track".split(","),
-            i,
-            o = function (n) {
-              return "function" == typeof n
-                ? o.l.push([arguments]) && o
-                : function () {
-                    return o.l.push([n, arguments]) && o;
-                  };
-            },
-            t = d.getElementsByTagName(s)[0],
-            j = d.createElement(s);
-          j.async = !0;
-          j.src = "https://cdn.fundraiseup.com/widget/" + a;
-          t.parentNode.insertBefore(j, t);
-          o.s = Date.now();
-          o.v = 4;
-          o.h = w.location.href;
-          o.l = [];
-          for (i = 0; i < 7; i++) o[l[i]] = o(l[i]);
-          w[n] = o;
-        }
-      })(window, document, "script", "FundraiseUp", "AEMZUDUM");
-    </script>
-
-    <!-- Checkout Open -->
-    <script>
-      FundraiseUp.openCheckout("AEMZUDUM", {
-        donation: {
-          amount: 10,
-          currency: "EUR",
-          recurring: "monthly",
-        },
-        supporter: {
-          firstName: "Emily",
-          lastName: "Smith",
-          email: "emily.smith@example.org",
-        },
-        tribute: {
-          honoree: "Mom and Dad",
-        },
-        designations: [{ id: "EHHJ9R36" }],
-        customFields: {
-          test: "value",
-          code: "some-code",
-          referralSource: "Social Media",
-          campaignName: "Spring Fundraiser",
-          notes: "This is a recurring donation.",
-          preferredContactMethod: "email",
-        },
-        config: {
-          modifyAmount: true,
-          modifyDesignation: true,
-        },
-      });
-    </script>
   </head>
   <body>
     <a href="#XJKDHSTQ" style="display: none"></a>
+    <script>
+      FundraiseUp.on("checkoutOpen", function (details) {
+        // Log the details for debugging purposes
+        console.log("Checkout opened with details:", details);
+
+        // Push a custom event to dataLayer for Google Analytics
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "checkout_opened",
+          fundraiseUp: {
+            campaignId: details.campaign.id,
+            campaignCode: details.campaign.code,
+            campaignName: details.campaign.name,
+            // You can also pass custom fields, utm parameters, or element data if needed:
+            elementId: details.element.id,
+            elementType: details.element.type,
+            elementName: details.element.name,
+            // Optionally include additional properties from details.customFields, details.livemode, etc.
+          },
+        });
+      });
+    </script>
   </body>
 </html>
