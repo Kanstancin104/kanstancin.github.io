@@ -4,6 +4,30 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Fundraise Up &amp; GA Integration</title>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-5HQSP3TH");
+    </script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-5HQSP3TH"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -17,6 +41,28 @@
       gtag("js", new Date());
 
       gtag("config", "G-FHDZFTN6VL");
+    </script>
+    <script>
+      FundraiseUp.on("checkoutOpen", function (details) {
+        // Log the details for debugging purposes
+        console.log("Checkout opened with details:", details);
+
+        // Push a custom event to dataLayer for Google Analytics
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "checkout_opened",
+          fundraiseUp: {
+            campaignId: details.campaign.id,
+            campaignCode: details.campaign.code,
+            campaignName: details.campaign.name,
+            // You can also pass custom fields, utm parameters, or element data if needed:
+            elementId: details.element.id,
+            elementType: details.element.type,
+            elementName: details.element.name,
+            // Optionally include additional properties from details.customFields, details.livemode, etc.
+          },
+        });
+      });
     </script>
     <!-- Fundraise Up: the new standard for online giving -->
     <script>
@@ -49,27 +95,5 @@
   </head>
   <body>
     <a href="#XJKDHSTQ" style="display: none"></a>
-    <script>
-      FundraiseUp.on("checkoutOpen", function (details) {
-        // Log the details for debugging purposes
-        console.log("Checkout opened with details:", details);
-
-        // Push a custom event to dataLayer for Google Analytics
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "checkout_opened",
-          fundraiseUp: {
-            campaignId: details.campaign.id,
-            campaignCode: details.campaign.code,
-            campaignName: details.campaign.name,
-            // You can also pass custom fields, utm parameters, or element data if needed:
-            elementId: details.element.id,
-            elementType: details.element.type,
-            elementName: details.element.name,
-            // Optionally include additional properties from details.customFields, details.livemode, etc.
-          },
-        });
-      });
-    </script>
   </body>
 </html>
