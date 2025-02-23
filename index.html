@@ -10,37 +10,13 @@
       src="https://www.googletagmanager.com/gtag/js?id=G-FHDZFTN6VL"
     ></script>
     <script>
-      // window.dataLayer = window.dataLayer || [];
-      // function gtag() {
-      //   dataLayer.push(arguments);
-      // }
-      // gtag("js", new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      // gtag("config", "G-FHDZFTN6VL");
-      FundraiseUp.on("checkout", function () {
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-          dataLayer.push({
-            event: "checkout_opened",
-            ecommerce: {
-              event_name: "begin_checkout",
-              value: 50, // Сумма
-              currency: "USD",
-              items: [
-                {
-                  item_name: "Donation",
-                  item_id: "donation_001",
-                  price: 50,
-                  quantity: 1,
-                },
-              ],
-            },
-          });
-        }
-        gtag("js", new Date());
-
-        gtag("config", "G-FHDZFTN6VL");
-      });
+      gtag("config", "G-FHDZFTN6VL");
     </script>
     <!-- Fundraise Up: the new standard for online giving -->
     <script>
