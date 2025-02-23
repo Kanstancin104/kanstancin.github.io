@@ -46,6 +46,70 @@
       })(window, document, "script", "FundraiseUp", "AEMZUDUM");
     </script>
     <!-- End Fundraise Up -->
+    <!-- Google Analytics tag -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-FHDZFTN6VL"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-FHDZFTN6VL");
+    </script>
+
+    <!-- Fundraise Up Widget -->
+    <script>
+      (function (w, d, s, n, a) {
+        if (!w[n]) {
+          var l = "call,catch,on,once,set,then,track".split(","),
+            i,
+            o = function (n) {
+              return "function" == typeof n
+                ? o.l.push([arguments]) && o
+                : function () {
+                    return o.l.push([n, arguments]) && o;
+                  };
+            },
+            t = d.getElementsByTagName(s)[0],
+            j = d.createElement(s);
+          j.async = !0;
+          j.src = "https://cdn.fundraiseup.com/widget/" + a;
+          t.parentNode.insertBefore(j, t);
+          o.s = Date.now();
+          o.v = 4;
+          o.h = w.location.href;
+          o.l = [];
+          for (i = 0; i < 7; i++) o[l[i]] = o(l[i]);
+          w[n] = o;
+        }
+      })(window, document, "script", "FundraiseUp", "AEMZUDUM");
+    </script>
+
+    <!-- Checkout Event Listener -->
+    <script>
+      FundraiseUp.on("checkout", function () {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "checkout_opened", // Custom event name to trigger in Google Analytics
+          ecommerce: {
+            event_name: "begin_checkout",
+            value: 50, // Donation amount (can be dynamic)
+            currency: "USD",
+            items: [
+              {
+                item_name: "Donation",
+                item_id: "donation_001",
+                price: 50,
+                quantity: 1,
+              },
+            ],
+          },
+        });
+      });
+    </script>
   </head>
   <body>
     <a href="#XJKDHSTQ" style="display: none"></a>
