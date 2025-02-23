@@ -88,15 +88,14 @@
       })(window, document, "script", "FundraiseUp", "AEMZUDUM");
     </script>
 
-    <!-- Checkout Event Listener -->
+    <!-- Checkout Open -->
     <script>
-      FundraiseUp.on("checkout", function () {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "checkout_opened", // Custom event name to trigger in Google Analytics
+      FundraiseUp.on("checkout.open", function () {
+        const eventData = {
+          event: "checkout_opened",
           ecommerce: {
             event_name: "begin_checkout",
-            value: 50, // Donation amount (can be dynamic)
+            value: 50, // Replace with dynamic donation amount if needed
             currency: "USD",
             items: [
               {
@@ -107,7 +106,9 @@
               },
             ],
           },
-        });
+        };
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(eventData);
       });
     </script>
   </head>
