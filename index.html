@@ -90,25 +90,33 @@
 
     <!-- Checkout Open -->
     <script>
-      FundraiseUp.on("checkout.open", function () {
-        const eventData = {
-          event: "checkout_opened",
-          ecommerce: {
-            event_name: "begin_checkout",
-            value: 50, // Replace with dynamic donation amount if needed
-            currency: "USD",
-            items: [
-              {
-                item_name: "Donation",
-                item_id: "donation_001",
-                price: 50,
-                quantity: 1,
-              },
-            ],
-          },
-        };
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push(eventData);
+      FundraiseUp.openCheckout("AEMZUDUM", {
+        donation: {
+          amount: 10,
+          currency: "EUR",
+          recurring: "monthly",
+        },
+        supporter: {
+          firstName: "Emily",
+          lastName: "Smith",
+          email: "emily.smith@example.org",
+        },
+        tribute: {
+          honoree: "Mom and Dad",
+        },
+        designations: [{ id: "EHHJ9R36" }],
+        customFields: {
+          test: "value",
+          code: "some-code",
+          referralSource: "Social Media",
+          campaignName: "Spring Fundraiser",
+          notes: "This is a recurring donation.",
+          preferredContactMethod: "email",
+        },
+        config: {
+          modifyAmount: true,
+          modifyDesignation: true,
+        },
       });
     </script>
   </head>
