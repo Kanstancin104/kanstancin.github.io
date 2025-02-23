@@ -122,26 +122,5 @@
   </head>
   <body>
     <a href="#XJKDHSTQ" style="display: none"></a>
-    <script>
-      FundraiseUp.on("checkout", function () {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "checkout_opened",
-          ecommerce: {
-            event_name: "begin_checkout",
-            value: 50, // Сумма
-            currency: "USD",
-            items: [
-              {
-                item_name: "Donation",
-                item_id: "donation_001",
-                price: 50,
-                quantity: 1,
-              },
-            ],
-          },
-        });
-      });
-    </script>
   </body>
 </html>
